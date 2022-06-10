@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  voip:
+    image : voip
+    container_name: voip
+    environment:
+    - UID=1000
+    - GID=1000
+    - DB=mongodb://mongodb:27017
+    - HOST=voip
+    - PORT=3000
+    - APPDIRECTORY=voip
+    - BASE_URL=https://voip.iyasec.io:3000/
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
